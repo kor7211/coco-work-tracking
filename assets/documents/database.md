@@ -1,6 +1,7 @@
 ```mermaid
 erDiagram
     HISTORY }|--|| WORK-TYPE : describe
+    HISTORY ||--o{ IMAGE : contains
     HISTORY {
         int id PK
         int typeId FK
@@ -11,7 +12,12 @@ erDiagram
         int breakMinutes
         text title
         text comment
-        text image "Nullable"
+    }
+
+    IMAGE {
+        int id PK
+        int historyId FK
+        text path
     }
     
     WORK-TYPE {
