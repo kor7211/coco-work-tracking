@@ -1,4 +1,4 @@
-import { getHistories } from "./api_history";
+import { getHistories } from "./api_history.js";
 
 const container = document.getElementById("history-container");
 if (!container) {
