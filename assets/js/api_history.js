@@ -11,10 +11,16 @@ async function _request(url, options = {}) {
 }
 
 
-async function getHistories(limit = 10) {
-    return await _request(
-        `http://localhost:8000/api/history?limit=${limit}`
-    );
+export async function getHistories(limit = 10, before = null, before_id = null) {
+    if (before == null) {
+        return await _request(
+            `http://localhost:8000/api/history?limit=${limit}`
+        );
+    } else {
+        return await _request(
+            `http://localhost:8000/api/history?limit=${limit}&before=${before}&before_id=${before_id}`
+        );
+    }
 }
 
 

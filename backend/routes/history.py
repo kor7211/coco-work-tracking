@@ -5,21 +5,45 @@ from datetime import datetime, timezone
 
 router = APIRouter(prefix="/api/history")
 
+
 @router.get("/")
 def get_histories(
-    limit: int = Query(default=10, ge=1, le=100)
+    limit: int = Query(default=10, ge=1, le=100),
+    before: str | None = None,
+    before_id: int = Query(default=1)
     ):
+    '''
+    Arguments:
+        limit(int): Maximum amount of items returned.
+        before(str): "%Y-%m-%dT%H:%M:%SZ" format datetime. return will be history started before and on this value. When this argument is not given, latest items will be returned.
+        before_id(int): When there is more than one items started at before value, items whose id is smaller than this value will be returned.
+    Returns:
+        history api's response. If success, items will be sorted decending way by started time and then id.
+    '''
+
     conn = database.get_connection()
+    result = None
 
-    query = """
-        SELECT *
-        FROM history
-        ORDER BY started DESC
-        LIMIT ?
-    """
-
-    cursor = conn.execute(query, (limit,))
-    result = cursor.fetchall()
+    if before is None:
+        query = """
+            SELECT *
+            FROM history
+            ORDER BY started DESC, id DESC
+            LIMIT ?
+        """
+        cursor = conn.execute(query, (limit,))
+        result = cursor.fetchall()
+    else:
+        query = """
+            SELECT *
+            FROM history
+            WHERE started < ?
+            OR (started = ? AND id < ?)
+            ORDER BY started DESC, id DESC
+            LIMIT ?
+        """
+        cursor = conn.execute(query, (before, before, before_id, limit,))
+        result = cursor.fetchall()
 
     conn.close()
 
