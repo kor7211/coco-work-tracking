@@ -9,5 +9,9 @@
     "title" : {
         "home": "Coco works tracking | Home",
         "universe": "Coco works tracking | Universe"
+    },
+    "page" : {
+        "home": "Home",
+        "universe": "Explore Universe"
     }
 }
