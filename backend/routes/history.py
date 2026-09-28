@@ -11,18 +11,8 @@ def get_histories(
     limit: int = Query(default=10, ge=1, le=100),
     before: str | None = None,
     before_id: int = Query(default=1)
-    ):
-    '''
-    Arguments:
-        limit(int): Maximum amount of items returned.
-        before(str): "%Y-%m-%dT%H:%M:%SZ" format datetime. return will be history started before and on this value. When this argument is not given, latest items will be returned.
-        before_id(int): When there is more than one items started at before value, items whose id is smaller than this value will be returned.
-    Returns:
-        history api's response. If success, items will be sorted decending way by started time and then id.
-    '''
-
+):
     conn = database.get_connection()
-    result = None
 
     if before is None:
         query = """
@@ -31,23 +21,54 @@ def get_histories(
             ORDER BY started DESC, id DESC
             LIMIT ?
         """
-        cursor = conn.execute(query, (limit,))
-        result = cursor.fetchall()
+
+        histories = conn.execute(query, (limit,)).fetchall()
+
     else:
         query = """
             SELECT *
             FROM history
             WHERE started < ?
-            OR (started = ? AND id < ?)
+               OR (started = ? AND id < ?)
             ORDER BY started DESC, id DESC
             LIMIT ?
         """
-        cursor = conn.execute(query, (before, before, before_id, limit,))
-        result = cursor.fetchall()
+
+        histories = conn.execute(
+            query,
+            (before, before, before_id, limit)
+        ).fetchall()
+
+    history_ids = [history["id"] for history in histories]
+
+    images = {}
+
+    if history_ids:
+        placeholders = ",".join("?" for _ in history_ids)
+
+        query = f"""
+            SELECT history_id, path
+            FROM images
+            WHERE history_id IN ({placeholders})
+            ORDER BY id
+        """
+
+        rows = conn.execute(query, history_ids).fetchall()
+
+        for row in rows:
+            images.setdefault(row["history_id"], []).append(
+                row["path"]
+            )
 
     conn.close()
 
-    return result
+    return [
+        {
+            **dict(history),
+            "images": images.get(history["id"], [])
+        }
+        for history in histories
+    ]
 
 @router.get("/types")
 def get_types(
@@ -98,6 +119,8 @@ def get_history(history_id: int):
 
     cursor = conn.execute(query, (history_id,))
     result = cursor.fetchone()
+
+    
 
     conn.close()
 
