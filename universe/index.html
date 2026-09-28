@@ -11,16 +11,16 @@
 <body>
     <header>
         <h1 data-i18n="title.universe"></h1>
+        <button onclick="setLanguage('ja')">ja</button>
+        <button onclick="setLanguage('en')">en</button>
     </header>
     <nav>
 
     </nav>
     <main>
-        <button onclick="setLanguage('ja')">ja</button>
-        <button onclick="setLanguage('en')">en</button>
-        <div id="wrapper">
-            
-
+        <div class="wrapper">
+            <div id="history-container"></div>
+            <div id="scroll-trigger"></div>
         </div>
     </main>
     <footer>

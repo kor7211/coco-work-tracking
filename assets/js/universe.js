@@ -1,5 +1,10 @@
 import { getHistories } from "./api_history";
 
+const container = document.getElementById("history-container");
+if (!container) {
+    throw new Error("Necessary DOMElement not fond: #history-container");
+}
+
 const LIMIT = 20; // Amount of items loaded per one unit
 
 let loading = false; // Loading on progress or not
@@ -16,7 +21,7 @@ async function loadMore() {
         const data = await getHistories(LIMIT, before, before_id);
 
         for (const history of data.items) {
-            createHistoryElement(history);
+            container.append(createHistoryElement(history));
             before = history.started;
             before_id = history.id;
         }
@@ -30,10 +35,19 @@ async function loadMore() {
 /**
  * Return new created DOMElement based on given data.
  * @param  history data of history from history api
+ * @returns html element
  */
 function createHistoryElement(history) {
+    const template = document.querySelector("#history-template");
+    if (!template) {
+        throw new Error("Necessary DOMElement not fond: #history-template");
+    }
+    const clone = template.cloneNode(true);
+
+    clone.querySelector(".title").textContent = history.title;
+    clone.querySelector(".comment").textContent = history.comment;
     
-    return;
+    return clone;
 }
 
 
