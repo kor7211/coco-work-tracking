@@ -1,0 +1,35 @@
+/**
+ * Control language selector element.
+ * Requirement:
+ *  Clickable element with language-selector-opener class.
+ *  Element with language-selector class.
+ *  Buttons with data-lang dataset.
+ * Expected:
+ *  language_selector.css attached.
+ */
+
+const selector = document.querySelector(".language-selector");
+if (!selector) {
+    throw new Error("Necessary element not found: .language-selector");
+};
+
+const button = document.querySelector(".language-button");
+if (!button) {
+    throw new Error("Necessary element not found: .language-button");
+};
+
+const options = document.querySelectorAll("[data-lang]");
+
+button.addEventListener("click", () => {
+    selector.classList.toggle("open");
+});
+
+options.forEach(option => {
+    option.addEventListener("click", () => {
+        const lang = option.dataset.lang;
+
+        setLanguage(lang);
+
+        selector.classList.remove("open");
+    });
+});

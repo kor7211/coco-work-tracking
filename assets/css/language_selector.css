@@ -1,0 +1,41 @@
+.language-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.language-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px 12px;
+}
+
+.language-options {
+    position: absolute;
+    top: 100%;
+    right: 0;
+
+    display: none;
+    min-width: 120px;
+
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.language-selector.open .language-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.language-options button {
+    border: none;
+    background: none;
+    text-align: left;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.language-options button:hover {
+    background: #f2f2f2;
+}

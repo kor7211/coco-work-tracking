@@ -5,28 +5,44 @@
     <meta name="author" content="Kohrin Suzuki">
     <title data-i18n="title.universe"></title>
 
-
+    <link rel="stylesheet" href="../assets/css/language_selector.css">
 </head>
-
 <body>
-    <header>
-        <h1 data-i18n="title.universe"></h1>
-        <button onclick="setLanguage('ja')">ja</button>
-        <button onclick="setLanguage('en')">en</button>
-    </header>
-    <nav>
+    <div class="wrapper">
+        <header>
+            <image src="../assets/images/logo64.jpg" alt="Logo"></image>
+            <h1 data-i18n="site.name"></h1>
+            <div class="language-selector">
+                <button class="language-button" type="button">
+                    Lang
+                    <span>⌄</span>
+                </button>
+            
+                <div class="language-options">
+                    <button type="button" data-lang="ja">Japanese</button>
+                    <button type="button" data-lang="en">English</button>
+                </div>
+            </div>
+        </header>
+        <nav>
 
-    </nav>
-    <main>
-        <div class="wrapper">
-            <div id="history-container"></div>
-            <div id="scroll-trigger"></div>
-        </div>
-    </main>
-    <footer>
+        </nav>
+        <main>
+            
+                <div id="history-container"></div>
+                <div id="scroll-trigger"></div>
+        
+        </main>
+        <footer>
 
-    </footer>
-    <script src="../assets/js/universe.js"></script>
+        </footer>
+    </div>
+    <template id="history-template">
+
+    </template>
+
+    <script type="module" src="../assets/js/universe.js"></script>
     <script src="../assets/js/language_setter.js"></script>
+    <script src="../assets/js/language_selector_controller.js"></script>
 </body>
 </html>

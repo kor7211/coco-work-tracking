@@ -1,4 +1,11 @@
 {
+    "site" : {
+        "name": "CocoWorkTracker"
+    },
+    "author" : {
+        "name" : "Coco-K",
+        "git" : ""
+    },
     "title" : {
         "home": "Coco works tracking | Home",
         "universe": "Coco works tracking | Universe"
