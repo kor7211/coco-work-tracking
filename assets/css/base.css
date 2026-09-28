@@ -1,0 +1,83 @@
+/* =========================
+   Basic decolation
+   Required css:
+    variables.css
+   ========================= */
+
+header {
+    color: var(--main-color-text);
+    background-color: var(--main-color);
+    height: 100px;
+    padding: 10px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main {
+    width: 100dvw;
+}
+
+footer {
+    color: var(--main-color-text);
+    background-color: var(--main-color-shade);
+    height: 200px;
+    padding: 20px;
+    margin-top: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper {
+    position: absolute;
+    height: 100dvh;
+    width: 100dvw;
+}
+
+.hidden {
+    display: none;
+}
+
+section.logo-container {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.hamburger {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    display: grid;
+    place-items: center;
+}
+
+.hamburger span,
+.hamburger span::before,
+.hamburger span::after {
+    content: "";
+    display: block;
+
+    width: 24px;
+    height: 2px;
+    background: var(--main-color-text);
+
+    position: absolute;
+}
+
+.hamburger span::before {
+    transform: translateY(-7px);
+}
+
+.hamburger span::after {
+    transform: translateY(7px);
+}

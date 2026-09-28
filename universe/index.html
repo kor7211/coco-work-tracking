@@ -2,56 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="Kohrin Suzuki">
+    <meta name="author" content="Coco-K">
     <title data-i18n="title.universe"></title>
 
     <link rel="stylesheet" href="../assets/css/reset.css">
-    <link rel="stylesheet" href="../assets/css/site_color.css">
-    
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/language_selector.css">
 </head>
 <body>
-    <div class="wrapper">
-        <header>
+    <div class="wrapper hidden"></div>
+    <header>
+        <section class="logo-container">
             <image src="../assets/images/logo64.jpg" alt="Logo"></image>
             <h1 data-i18n="site.name"></h1>
-            <div class="language-selector">
-                <button class="language-button" type="button">
-                    Lang
-                    <span>⌄</span>
-                </button>
-            
-                <div class="language-options">
-                    <button type="button" data-lang="ja">Japanese</button>
-                    <button type="button" data-lang="en">English</button>
-                </div>
-            </div>
-            <button class="navigation-button" type="button">
-                ≡
+        </section>
+        <div class="language-selector">
+            <button class="language-button" type="button">
+                Lang
+                <span>⌄</span>
             </button>
-        </header>
-        <nav>
-            <ul>
-                <li><a href="../index.html" data-i18n="page.home"></a></li>
-                <li><a href="#" data-i18n="page.universe"></a></li>
-            </ul>
-        </nav>
-        <main>
-            <div id="history-container"></div>
-            <div id="scroll-trigger"></div>
-        </main>
-        <footer>
-            <section>
-                <image src="../assets/images/logo64.jpg" alt="Logo"></image>
-                <h1 data-i18n="site.name"></h1>
-            </section>
-            <p data-i18n="copyright"></p>
-            <ul>
-                <li><a href="../index.html" data-i18n="page.home"></a></li>
-                <li><a href="#" data-i18n="page.universe"></a></li>
-            </ul>
-        </footer>
-    </div>
+        
+            <div class="language-options">
+                <button type="button" data-lang="ja">Japanese</button>
+                <button type="button" data-lang="en">English</button>
+            </div>
+        </div>
+        <button class="navigation-button hamburger" type="button">
+            <span></span>
+        </button>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="../index.html" data-i18n="page.home"></a></li>
+            <li><a href="#" data-i18n="page.universe"></a></li>
+        </ul>
+    </nav>
+    <main>
+        <div id="history-container"></div>
+        <div id="scroll-trigger"></div>
+    </main>
+    <footer>
+        <section class="logo-container">
+            <image src="../assets/images/logo64.jpg" alt="Logo"></image>
+            <h1 data-i18n="site.name"></h1>
+        </section>
+        <p data-i18n="copyright"></p>
+        <ul>
+            <li><a href="../index.html" data-i18n="page.home"></a></li>
+            <li><a href="#" data-i18n="page.universe"></a></li>
+        </ul>
+    </footer>
     <template id="history-template">
 
     </template>

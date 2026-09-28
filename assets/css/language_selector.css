@@ -5,9 +5,13 @@
 
 .language-button {
     border: none;
-    background: none;
+    border-top: 2px solid var(--main-color-shade);
+    background: var(--main-color-hilight);
+    color: var(--gray-dark);
+    border-radius: 5px 5px 0px 0px;
     cursor: pointer;
     padding: 8px 12px;
+    width: 100px;
 }
 
 .language-options {
@@ -16,7 +20,7 @@
     right: 0;
 
     display: none;
-    min-width: 120px;
+    width: 100px;
 
     background: white;
     border: 1px solid #ddd;
